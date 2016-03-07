@@ -56,7 +56,6 @@ class MemoryFrame(wx.Frame):
         box = wx.BoxSizer(wx.VERTICAL)
         box.AddMany([self.labelbox, self.gamebox])
         self.SetSizerAndFit(box)
-        self.SetSizeHintsSz(self.GetSize(), self.GetSize())
         self.CenterOnScreen()
 
     def initGame(self, evt=None):
