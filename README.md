@@ -12,5 +12,5 @@ A simple memory game developed in Python with the WxPython module.
 To play a game, clone the repository and run in a terminal:
     
 ```bash
-$ python Memory.py
+python Memory.py
 ```
