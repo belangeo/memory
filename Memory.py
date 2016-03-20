@@ -1,14 +1,12 @@
 #!/usr/bin/env python
 # encoding: utf-8
-import wx, os, random
-import wx.lib.buttons as buttons
+import os, random, wx, wx.lib.buttons as buttons
 
 PATH = os.path.join(os.getcwd(), "images")
 
 class MemoryFrame(wx.Frame):
     def __init__(self):
         wx.Frame.__init__(self, None, title=u"Jeu de Mémoire")
-
         self.createMenuBar()
         self.createButtons()
         self.createLabelBox()
@@ -29,17 +27,15 @@ class MemoryFrame(wx.Frame):
         menubar.SetMenus([(fileMenu, "Fichier"), (helpMenu, "Help")])
         self.SetMenuBar(menubar)
 
-    def button(self, id, img):
-        bitmap = wx.Bitmap(os.path.join(PATH, img), wx.BITMAP_TYPE_PNG)
+    def createButton(self, id):
         button = buttons.GenBitmapToggleButton(self, id, self.back)
-        button.SetBitmapSelected(bitmap)
         button.Bind(wx.EVT_BUTTON, self.onToggleButton)
         return button
 
     def createButtons(self):
         self.back = wx.EmptyImage(64, 64).ConvertToBitmap()
         self.imgs = [f for f in os.listdir(PATH) if f.endswith(".png")] * 2
-        self.togs = [self.button(i, im) for i, im in enumerate(self.imgs)]
+        self.togs = [self.createButton(id) for id in range(len(self.imgs))]
 
     def createLabelBox(self):
         self.labelbox = wx.BoxSizer(wx.HORIZONTAL)
