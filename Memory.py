@@ -3,7 +3,11 @@
 import os, random, wx, wx.lib.buttons as buttons
 
 if "phoenix" in wx.version():
-    wx.EmptyImage = wx.Image
+    from wx.adv import AboutDialogInfo, AboutBox
+    wx.EmptyImage = wx.Image # EmptyImage has been removed in phoenix.
+else:
+    from wx import AboutDialogInfo, AboutBox
+    
 
 PATH = os.path.join(os.getcwd(), "images")
 
@@ -101,12 +105,12 @@ class MemoryFrame(wx.Frame):
         self.elapsed.SetLabel(t)
 
     def onShowAbout(self, evt):
-        info = wx.AboutDialogInfo()
+        info = AboutDialogInfo()
         info.SetVersion("1.0")
         info.SetName("Memory")
         info.SetDescription("A simple memory game written with WxPython.")
         info.SetCopyright(u"Olivier Bélanger (2016)")
-        wx.AboutBox(info)
+        AboutBox(info)
 
 if __name__ == "__main__":
     app = wx.App()
