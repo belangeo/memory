@@ -2,6 +2,9 @@
 # encoding: utf-8
 import os, random, wx, wx.lib.buttons as buttons
 
+if "phoenix" in wx.version():
+    wx.EmptyImage = wx.Image
+
 PATH = os.path.join(os.getcwd(), "images")
 
 class MemoryFrame(wx.Frame):
